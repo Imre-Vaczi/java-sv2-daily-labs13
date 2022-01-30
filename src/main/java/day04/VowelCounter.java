@@ -13,14 +13,18 @@ public class VowelCounter {
 
     public Map<Character, Integer> getStatistics(String text) {
         for(Character ch : text.toLowerCase(Locale.ROOT).toCharArray()) {
-            if (stat.containsKey(ch) & vows.contains(ch)) {
-                stat.put(ch, stat.get(ch) +1 );
-            } else {
-                if (vows.contains(ch)) {
-                    stat.put(ch, 1);
-                }
-            }
+            refreshMap(text, ch);
         }
         return getStat();
+    }
+
+    private void refreshMap(String text, Character ch) {
+        if (stat.containsKey(ch) & vows.contains(ch)) {
+            stat.put(ch, stat.get(ch) +1 );
+        } else {
+            if (vows.contains(ch)) {
+                stat.put(ch, 1);
+            }
+        }
     }
 }

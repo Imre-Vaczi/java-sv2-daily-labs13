@@ -13,14 +13,18 @@ public class ConsonantCounter {
 
     public Map<Character, Integer> getStatistics(String text) {
         for(Character ch : text.toLowerCase(Locale.ROOT).toCharArray()) {
-            if (stat.containsKey(ch) & cons.contains(ch)) {
-                stat.put(ch, stat.get(ch) +1 );
-            } else {
-                if (cons.contains(ch)) {
-                    stat.put(ch, 1);
-                }
-            }
+            refreshMap(text, ch);
         }
         return getStat();
+    }
+
+    private void refreshMap(String text, Character ch) {
+        if (stat.containsKey(ch) & cons.contains(ch)) {
+            stat.put(ch, stat.get(ch) +1 );
+        } else {
+            if (cons.contains(ch)) {
+                stat.put(ch, 1);
+            }
+        }
     }
 }
